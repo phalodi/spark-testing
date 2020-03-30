@@ -21,7 +21,7 @@ jobs:
         env:
           KUBE_CONFIG_TEMPLATE: file_path
         run: |
-          echo ::set-env name=KUBE_CONFIG_TEMP::$(echo KUBE_CONFIG_TEMPLATE | cut -c 1-6)
+          echo ::set-env name=KUBE_CONFIG_TEMP::$(echo $KUBE_CONFIG_TEMPLATE)
       - name: echo test
         run: |
             echo $KUBE_CONFIG_TEMP
