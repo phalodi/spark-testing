@@ -24,4 +24,4 @@ jobs:
           echo "GITHUB_REPOSITORY_OWNER=fdfdfdsfdsfds"
       - name: echo test
         run: |
-            echo echo ${{ env.KUBE_CONFIG_TEMPLATE }}
+            echo ${{ env.KUBE_CONFIG_TEMPLATE }}
