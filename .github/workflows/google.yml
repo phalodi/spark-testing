@@ -12,7 +12,6 @@ name: Build and Deploy to GKE
 
 on:
   release:
-    types: [created]
     tags:
       - spark-*
 
