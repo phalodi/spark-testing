@@ -24,4 +24,4 @@ jobs:
               export KUBE_CONFIG_TEMP= $KUBE_CONFIG_TEMPLATE
       - name: echo test
         run: |
-            echo "$file_path"
+            echo $KUBE_CONFIG_TEMP
