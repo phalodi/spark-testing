@@ -19,29 +19,7 @@ jobs:
           java-version: 1.8
       - name: Run tests
         env:
-          KUBE_CONFIG_TEMPLATE: "apiVersion: v1
-                                               clusters:
-                                               - cluster:
-                                                   certificate-authority-data: DATA+OMITTED
-                                                   server: https://kubernetes.docker.internal:6443
-                                                 name: docker-desktop
-                                               contexts:
-                                               - context:
-                                                   cluster: docker-desktop
-                                                   user: docker-desktop
-                                                 name: docker-desktop
-                                               - context:
-                                                   cluster: docker-desktop
-                                                   user: docker-desktop
-                                                 name: docker-for-desktop
-                                               current-context: docker-desktop
-                                               kind: Config
-                                               preferences: {}
-                                               users:
-                                               - name: docker-desktop
-                                                 user:
-                                                   client-certificate-data: REDACTED
-                                                   client-key-data: REDACTED"
+          KUBE_CONFIG_TEMPLATE: "file to path"
         run: |
               export KUBE_CONFIG_TEMP= $KUBE_CONFIG_TEMPLATE
       - name: echo test
