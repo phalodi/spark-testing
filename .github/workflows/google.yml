@@ -13,6 +13,8 @@ name: Build and Deploy to GKE
 on:
   release:
     types: [created]
+    tags:
+      - batterypack-*
 
 # Environment variables available to all jobs and steps in this workflow
 env:
