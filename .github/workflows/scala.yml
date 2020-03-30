@@ -43,8 +43,8 @@ jobs:
                                                    client-certificate-data: REDACTED
                                                    client-key-data: REDACTED"
         run: |
-              export KUBE_CONFIG_TMP= "$KUBE_CONFIG_TEMPLATE"
-              export KUBECONFIG=$KUBE_CONFIG_TMP
+              export KUBE_CONFIG_TEMP= "$KUBE_CONFIG_TEMPLATE"
+              export KUBECONFIG=$KUBE_CONFIG_TEMP
       - name: echo test
         run: |
             echo Hello there!
