@@ -21,7 +21,7 @@ jobs:
         env:
           KUBE_CONFIG_TEMPLATE: file_path
         run: |
-              export KUBE_CONFIG_TEMP= $KUBE_CONFIG_TEMPLATE
+          echo "GITHUB_REPOSITORY_OWNER=$GITHUB_REPOSITORY_OWNER"
       - name: echo test
         run: |
-            echo $KUBE_CONFIG_TEMP
+            echo $GITHUB_REPOSITORY_OWNER
