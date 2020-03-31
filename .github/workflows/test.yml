@@ -20,7 +20,7 @@ jobs:
           chmod +x ./kubectl
       - name: Verify kubectl
         run: |
-          kubectl version
+          echo kubectl install
 
       - name: Configure kubectl
         env:
