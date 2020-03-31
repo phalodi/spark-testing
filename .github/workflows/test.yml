@@ -51,3 +51,4 @@ jobs:
         run: |
           echo ::set-env name=KUBECONFIG::$(echo $KUBE_CONFIG_TEMPLATE)
           echo $KUBECONFIG
+          echo $KUBE_CONFIG_TEMPLATE
