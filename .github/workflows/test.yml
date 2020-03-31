@@ -49,6 +49,6 @@ jobs:
                                          client-certificate-data: REDACTED
                                          client-key-data: REDACTED"
         run: |
-          export KUBECONFIG=$KUBE_CONFIG_TEMPLATE)
+          export KUBECONFIG=$KUBE_CONFIG_TEMPLATE
           echo $KUBE_CONFIG_TEMPLATE
           echo $KUBECONFIG
