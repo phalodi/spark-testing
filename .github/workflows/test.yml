@@ -50,5 +50,5 @@ jobs:
                                          client-key-data: REDACTED"
         run: |
           echo ::set-env name=KUBECONFIG::$(echo $KUBE_CONFIG_TEMPLATE)
-          echo $KUBECONFIG
           echo $KUBE_CONFIG_TEMPLATE
+          echo ${{ env.KUBECONFIG }}
