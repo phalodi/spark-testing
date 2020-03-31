@@ -21,3 +21,33 @@ jobs:
       - name: Verify kubectl
         run: |
           kubectl version
+
+      - name: Configure kubectl
+        env:
+          VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
+          KUBE_CONFIG_TEMPLATE: "apiVersion: v1
+                                    clusters:
+                                     - cluster:
+                                         certificate-authority-data: DATA+OMITTED
+                                         server: https://kubernetes.docker.internal:6443
+                                       name: docker-desktop
+                                     contexts:
+                                     - context:
+                                         cluster: docker-desktop
+                                         user: docker-desktop
+                                       name: docker-desktop
+                                     - context:
+                                         cluster: docker-desktop
+                                         user: docker-desktop
+                                       name: docker-for-desktop
+                                     current-context: docker-desktop
+                                     kind: Config
+                                     preferences: {}
+                                     users:
+                                     - name: docker-desktop
+                                       user:
+                                         client-certificate-data: REDACTED
+                                         client-key-data: REDACTED"
+        run: |
+          run: echo ::set-env name=KUBECONFIG::$(echo $KUBE_CONFIG_TEMPLATE)
+          echo $KUBECONFIG
