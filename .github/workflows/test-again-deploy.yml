@@ -47,7 +47,8 @@ jobs:
           echo $KUBE_CONFIG
           echo "$KUBE_CONFIG" > kube_config.yml
           export KUBECONFIG=kube_config.yml
-          cat kube_config.yml
+          echo kubernetes file showwwww
+          echo $(cat kube_config.yml)
       - name: Build and publish Docker Image
         run: |
           echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
