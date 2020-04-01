@@ -1,0 +1,75 @@
+name: CI/CD - docker deployment
+
+on:
+  push:
+
+jobs:
+  build:
+
+    runs-on:  ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install kubectl
+        run: |
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+          chmod +x ./kubectl
+      - name: Verify kubectl
+        run: |
+          kubectl version
+      - name: Configure kubectl
+          #add secret secret for eunit nuc
+          KUBE_CONFIG_TEMPLATE: "apiVersion: v1
+                                 clusters:
+                                 - cluster:
+                                     certificate-authority-data: DATA+OMITTED
+                                     server: https://kubernetes.docker.internal:6443
+                                   name: docker-desktop
+                                 contexts:
+                                 - context:
+                                     cluster: docker-desktop
+                                     user: docker-desktop
+                                   name: docker-desktop
+                                 - context:
+                                     cluster: docker-desktop
+                                     user: docker-desktop
+                                   name: docker-for-desktop
+                                 current-context: docker-desktop
+                                 kind: Config
+                                 preferences: {}
+                                 users:
+                                 - name: docker-desktop
+                                   user:
+                                     client-certificate-data: REDACTED
+                                     client-key-data: REDACTED"
+        run: |
+          KUBE_CONFIG= $KUBE_CONFIG_TEMPLATE
+          echo "KUBE_CONFIG" > kube_config.yml
+          export KUBECONFIG=kube_config.yml
+          cat kube_config.yml
+      - name: Build and publish Docker Image
+        run: |
+          run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF:10}
+
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Deploying
+        run: |
+          echo $RELEASE_VERSION
+
+  cleanup:
+    needs: deploy
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Purge files
+        run: |
+          rm kube_config.yml
+
+
