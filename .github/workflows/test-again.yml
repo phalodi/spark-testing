@@ -18,7 +18,6 @@ jobs:
         run: |
           kubectl version
       - name: Configure kubectl
-          #add secret secret for eunit nuc
           KUBE_CONFIG_TEMPLATE: "apiVersion: v1
                                  clusters:
                                  - cluster:

@@ -1,4 +1,4 @@
-name: CI/CD - Modbus deployment
+name: CI/CD - deployment
 
 on:
   push:
@@ -52,3 +52,5 @@ jobs:
           export KUBECONFIG=$KUBE_CONFIG_TEMPLATE
           echo $KUBE_CONFIG_TEMPLATE
           echo $KUBECONFIG
+
+
