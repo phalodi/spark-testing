@@ -1,4 +1,4 @@
-name: CI/CD - deployment
+name: CI/CD - test deployment
 
 on:
   push:
