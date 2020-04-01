@@ -24,7 +24,6 @@ jobs:
 
       - name: Configure kubectl
         env:
-          VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
           KUBE_CONFIG_TEMPLATE: "apiVersion: v1
                                     clusters:
                                      - cluster:
