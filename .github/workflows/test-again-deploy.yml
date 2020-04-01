@@ -45,7 +45,7 @@ jobs:
         run: |
           export KUBE_CONFIG=$KUBE_CONFIG_TEMPLATE
           echo $KUBE_CONFIG
-          echo "$KUBE_CONFIG" > kube_config.yml
+          echo "$KUBE_CONFIG" > ./kube_config.yml
           export KUBECONFIG=kube_config.yml
           echo kubernetes file showwwww
           echo $(cat kube_config.yml)
