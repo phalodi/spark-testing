@@ -43,8 +43,8 @@ jobs:
                                      client-certificate-data: REDACTED
                                      client-key-data: REDACTED"
         run: |
-          KUBE_CONFIG= $KUBE_CONFIG_TEMPLATE
-          echo "KUBE_CONFIG" > kube_config.yml
+          export KUBE_CONFIG= $KUBE_CONFIG_TEMPLATE
+          echo "$KUBE_CONFIG" > kube_config.yml
           export KUBECONFIG=kube_config.yml
           cat kube_config.yml
       - name: Build and publish Docker Image
