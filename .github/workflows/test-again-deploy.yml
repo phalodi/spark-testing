@@ -2,6 +2,8 @@ name: CI/CD - docker deployment
 
 on:
   push:
+    tags:
+      - v*
 
 jobs:
   build:
